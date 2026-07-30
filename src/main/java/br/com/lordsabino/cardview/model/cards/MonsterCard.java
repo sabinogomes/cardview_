@@ -1,92 +1,79 @@
 package br.com.lordsabino.cardview.model.cards;
 
 import br.com.lordsabino.cardview.model.enums.*;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
-import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "monster_cards")
 public class MonsterCard extends Card {
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private MonsterAttribute attribute;
 
-    private MonsterRace monsterRace;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private MonsterRace race;
 
-    private Set<MonsterType> monsterTypes;
+    @NotEmpty(message = "Monster must have at least one type")
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+            name = "monster_card_types",
+            joinColumns = @JoinColumn(name = "monster_card_id")
+    )
+    @Enumerated(EnumType.STRING)
+    @Column(name = "monster_type", nullable = false)
+    private final Set<MonsterType> monsterTypes = new HashSet<>();
 
+    @NotNull
+    @Min(1)
+    @Max(12)
+    @Column(nullable = false)
     private Integer level;
 
+    @NotNull
+    @Min(0)
+    @Column(nullable = false)
     private Integer attack;
 
+    @NotNull
+    @Min(0)
+    @Column(nullable = false)
     private Integer defense;
 
-    public MonsterCard() {
+    protected MonsterCard() {
     }
 
     public MonsterCard(
-            Long id,
             String name,
-            MonsterAttribute attribute,
-            MonsterRace monsterRace,
-            Set<MonsterType> monsterTypes,
-            Integer level,
-            Integer attack,
-            Integer defense,
             String passcode,
             CardStatus status,
             String description,
-            LocalDateTime createdAt,
-            LocalDateTime updatedAt
+            String imageUrl,
+            MonsterAttribute attribute,
+            MonsterRace race,
+            Set<MonsterType> monsterTypes,
+            Integer level,
+            Integer attack,
+            Integer defense
     ) {
-        super(
-                id,
-                name,
-                passcode,
-                status,
-                description,
-                createdAt,
-                updatedAt);
-        this.attribute = attribute;
-        this.monsterRace = monsterRace;
-        this.monsterTypes = monsterTypes;
-        this.level = level;
-        this.attack = attack;
-        this.defense = defense;
-    }
+        super(name, passcode, status, description, imageUrl);
 
-    @Override
-    public String toString() {
-        String format = """
-				ID: %s
-				Name: %s
-				Attribute: %s
-				Race: %s
-				Types: %s
-				Level: %s
-				Attack: %s
-				Defense: %s
-				passcode: %s
-				Status: %s
-				Description: %s
-				Created At: %s
-				Updated At: %s
-				""";
-        return String
-                .format(
-                        format,
-                        getId(),
-                        getName(),
-                        attribute,
-                        monsterRace,
-                        monsterTypes,
-                        level,
-                        attack,
-                        defense,
-                        getPasscode(),
-                        getStatus(),
-                        getDescription(),
-                        getCreatedAt(),
-                        getUpdatedAt()
-                );
+        update(
+                attribute,
+                race,
+                monsterTypes,
+                level,
+                attack,
+                defense
+        );
     }
 
     @Override
@@ -94,52 +81,95 @@ public class MonsterCard extends Card {
         return CardType.MONSTER;
     }
 
+    public void update(
+            MonsterAttribute attribute,
+            MonsterRace race,
+            Set<MonsterType> monsterTypes,
+            Integer level,
+            Integer attack,
+            Integer defense
+    ) {
+
+        if (attribute == null) {
+            throw new IllegalArgumentException("Monster attribute cannot be null");
+        }
+
+        if (race == null) {
+            throw new IllegalArgumentException("Monster race cannot be null");
+        }
+
+        if (monsterTypes == null || monsterTypes.isEmpty()) {
+            throw new IllegalArgumentException("Monster must have at least one type");
+        }
+
+        if (level == null || level < 1 || level > 12) {
+            throw new IllegalArgumentException("Level must be between 1 and 12");
+        }
+
+        if (attack == null || attack < 0) {
+            throw new IllegalArgumentException("Attack must be greater than or equal to zero");
+        }
+
+        if (defense == null || defense < 0) {
+            throw new IllegalArgumentException("Defense must be greater than or equal to zero");
+        }
+
+        this.attribute = attribute;
+        this.race = race;
+        this.level = level;
+        this.attack = attack;
+        this.defense = defense;
+
+        this.monsterTypes.clear();
+        this.monsterTypes.addAll(monsterTypes);
+    }
+
     public MonsterAttribute getAttribute() {
         return attribute;
     }
 
-    public void setAttribute(MonsterAttribute attribute) {
-        this.attribute = attribute;
-    }
-
-    public MonsterRace getMonsterRace() {
-        return monsterRace;
-    }
-
-    public void setMonsterRace(MonsterRace monsterRace) {
-        this.monsterRace = monsterRace;
+    public MonsterRace getRace() {
+        return race;
     }
 
     public Set<MonsterType> getMonsterTypes() {
-        return monsterTypes;
-    }
-
-    public void setMonsterTypes(Set<MonsterType> monsterTypes) {
-        this.monsterTypes = monsterTypes;
+        return Collections.unmodifiableSet(monsterTypes);
     }
 
     public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
     public Integer getAttack() {
         return attack;
-    }
-
-    public void setAttack(Integer attack) {
-        this.attack = attack;
     }
 
     public Integer getDefense() {
         return defense;
     }
 
-    public void setDefense(Integer defense) {
-        this.defense = defense;
+    @Override
+    public String toString() {
+        return """
+                MonsterCard {
+                    id=%s,
+                    name='%s',
+                    attribute=%s,
+                    race=%s,
+                    types=%s,
+                    level=%s,
+                    attack=%s,
+                    defense=%s
+                }
+                """.formatted(
+                getId(),
+                getName(),
+                attribute,
+                race,
+                monsterTypes,
+                level,
+                attack,
+                defense
+        );
     }
-
 }
