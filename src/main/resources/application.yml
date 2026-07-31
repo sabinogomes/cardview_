@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: cardview
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${POSTGRES_DB:cardview}
+    username: ${POSTGRES_USER:cardview}
+    password: ${POSTGRES_PASSWORD:cardview}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+    open-in-view: false
+
+    properties:
+      hibernate:
+        format_sql: true
+
+    show-sql: false
+
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
