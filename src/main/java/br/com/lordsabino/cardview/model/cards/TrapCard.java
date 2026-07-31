@@ -37,7 +37,7 @@ public class TrapCard extends Card {
     public final void update(TrapProperty property) {
 
         if (property == null) {
-            throw new IllegalArgumentException("Spell property cannot be null");
+            throw new IllegalArgumentException("Trap property cannot be null");
         }
 
         this.property = property;
