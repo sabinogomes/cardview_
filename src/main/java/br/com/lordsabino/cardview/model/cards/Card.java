@@ -5,6 +5,7 @@ import br.com.lordsabino.cardview.model.enums.CardStatus;
 import br.com.lordsabino.cardview.model.enums.CardType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -19,8 +20,9 @@ public abstract class Card extends BaseEntity {
     private String name;
 
     @NotBlank
-    @Size(max = 100)
-    @Column(nullable = false, unique = true)
+    @Size(min = 8, max = 8)
+    @Pattern(regexp = "\\d{8}")
+    @Column(nullable = false, unique = true, length = 8)
     private String passcode;
 
     @Enumerated(EnumType.STRING)

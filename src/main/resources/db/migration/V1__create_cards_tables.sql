@@ -5,7 +5,7 @@ CREATE TABLE cards (
                        id           BIGSERIAL PRIMARY KEY,
                        card_type    VARCHAR(31)   NOT NULL,
                        name         VARCHAR(255)  NOT NULL,
-                       passcode     VARCHAR(100)  NOT NULL,
+                       passcode     VARCHAR(8)    NOT NULL,
                        status       VARCHAR(255)  NOT NULL,
                        description  VARCHAR(4000),
                        image_url    VARCHAR(500),
