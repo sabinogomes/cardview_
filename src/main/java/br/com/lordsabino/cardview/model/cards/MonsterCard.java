@@ -81,7 +81,7 @@ public class MonsterCard extends Card {
         return CardType.MONSTER;
     }
 
-    public void update(
+    public final void update(
             MonsterAttribute attribute,
             MonsterRace race,
             Set<MonsterType> monsterTypes,

@@ -61,7 +61,7 @@ public abstract class Card extends BaseEntity {
      * Atualiza os dados comuns da carta.
      * Usado na criação e na edição da carta.
      */
-    public void update(
+    public final void update(
             String name,
             String passcode,
             CardStatus status,
