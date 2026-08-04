@@ -6,25 +6,6 @@ API REST desenvolvida com **Java 25 (LTS) e Spring Boot** para gerenciamento de 
 
 Projeto criado com foco em **arquitetura em camadas, modelagem orientada a objetos, JPA/Hibernate, boas práticas de desenvolvimento backend e construção de portfólio**.
 
-![Java](https://img.shields.io/badge/Java-25%20LTS-orange?style=for-the-badge\&logo=openjdk)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge\&logo=springboot)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=for-the-badge\&logo=postgresql)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge\&logo=docker)
-![Flyway](https://img.shields.io/badge/Flyway-Migrations-CC0200?style=for-the-badge)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
-
-</div>
-
----
-
-<div align="center">
-
-# CardView API
-
-API REST desenvolvida com **Java 25 (LTS) e Spring Boot** para gerenciamento de cartas inspiradas em jogos de cartas colecionáveis (TCG).
-
-Projeto criado com foco em **arquitetura em camadas, modelagem orientada a objetos, JPA/Hibernate, boas práticas de desenvolvimento backend e construção de portfólio**.
-
 ![Banner CardView](assets/banner.png)
 
 ![Java](https://img.shields.io/badge/Java-25%20LTS-orange?style=for-the-badge&logo=openjdk)
