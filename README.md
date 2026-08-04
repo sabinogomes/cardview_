@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/logo.png" width="90" alt="CardView Logo" />
+
 # CardView API
 
 API REST desenvolvida com **Java 25 (LTS) e Spring Boot** para gerenciamento de cartas inspiradas em jogos de cartas colecionáveis (TCG).
@@ -8,10 +10,10 @@ Projeto criado com foco em **arquitetura em camadas, modelagem orientada a objet
 
 ![Banner CardView](assets/banner.png)
 
-![Java](https://img.shields.io/badge/Java-25%20LTS-orange?style=for-the-badge&logo=openjdk)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=springboot)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=for-the-badge&logo=postgresql)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)
+![Java](https://img.shields.io/badge/Java-25%20LTS-orange?style=for-the-badge\&logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge\&logo=springboot)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=for-the-badge\&logo=postgresql)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge\&logo=docker)
 ![Flyway](https://img.shields.io/badge/Flyway-Migrations-CC0200?style=for-the-badge)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
 
@@ -38,9 +40,9 @@ Além de ser um projeto funcional, ele foi desenvolvido para demonstrar conhecim
 
 ---
 
-# Demonstração da arquitetura
+## Demonstração da arquitetura
 
-## Arquitetura em camadas
+### Arquitetura em camadas
 
 ```text
 Cliente (Postman / Front-end)
@@ -62,7 +64,7 @@ O projeto adota uma **arquitetura em camadas com baixo acoplamento entre as resp
 
 ---
 
-# Modelo de domínio
+## Modelo de domínio
 
 A entidade `Card` é a classe base do sistema e utiliza **InheritanceType.JOINED** para representar diferentes tipos de cartas.
 
@@ -74,7 +76,7 @@ A entidade `Card` é a classe base do sistema e utiliza **InheritanceType.JOINED
 MonsterCard     SpellCard      TrapCard
 ```
 
-## Atributos comuns
+### Atributos comuns
 
 Todas as cartas compartilham informações como:
 
@@ -90,7 +92,7 @@ As especializações adicionam seus próprios atributos, como ataque, defesa, n�
 
 ---
 
-# Tecnologias utilizadas
+## Tecnologias utilizadas
 
 | Tecnologia      | Finalidade                    |
 | --------------- | ----------------------------- |
@@ -105,7 +107,7 @@ As especializações adicionam seus próprios atributos, como ataque, defesa, n�
 
 ---
 
-# Estrutura do projeto
+## Estrutura do projeto
 
 ```text
 src
@@ -130,7 +132,7 @@ src
 
 ---
 
-# Banco de dados
+## Banco de dados
 
 O projeto utiliza **Flyway** para controlar a evolução do esquema do banco de dados.
 
@@ -150,37 +152,37 @@ Dessa forma, qualquer ambiente pode reproduzir o banco de forma consistente.
 
 ---
 
-# Como executar
+## Como executar
 
-## Pré-requisitos
+### Pré-requisitos
 
 * Java 25 (LTS)
 * Maven
 * Docker
 * Docker Compose
 
-## 1. Clonar o repositório
+### 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/lordsabino/cardview.git
 cd cardview
 ```
 
-## 2. Subir o PostgreSQL
+### 2. Subir o PostgreSQL
 
 ```bash
 docker compose up -d
 ```
 
-## 3. Executar a aplicação
+### 3. Executar a aplicação
 
-### Linux / macOS
+#### Linux / macOS
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-### Windows
+#### Windows
 
 ```bash
 mvnw.cmd spring-boot:run
@@ -194,7 +196,7 @@ http://localhost:8080
 
 ---
 
-# Configuração do banco
+## Configuração do banco
 
 Exemplo de `application.yml`:
 
@@ -215,17 +217,17 @@ spring:
 
 ---
 
-# Exemplo de endpoints
+## Exemplo de endpoints
 
 > **Observação:** os endpoints abaixo representam a estrutura planejada da API e serão implementados ao longo do desenvolvimento do projeto.
 
-## Criar um monstro
+### Criar um monstro
 
 ```http
 POST /api/monsters
 ```
 
-### Requisição
+#### Requisição
 
 ```json
 {
@@ -240,7 +242,7 @@ POST /api/monsters
 }
 ```
 
-### Resposta
+#### Resposta
 
 ```json
 {
@@ -251,7 +253,7 @@ POST /api/monsters
 }
 ```
 
-## Buscar todas as cartas
+### Buscar todas as cartas
 
 ```http
 GET /api/cards
@@ -259,11 +261,11 @@ GET /api/cards
 
 ---
 
-# Conceitos aplicados
+## Conceitos aplicados
 
 Este projeto utiliza diversas práticas comuns em aplicações Spring Boot.
 
-## Persistência
+### Persistência
 
 * JPA
 * Hibernate
@@ -271,7 +273,7 @@ Este projeto utiliza diversas práticas comuns em aplicações Spring Boot.
 * Enum como STRING
 * Relacionamentos entre entidades
 
-## Arquitetura
+### Arquitetura
 
 * Controllers
 * Services
@@ -279,7 +281,7 @@ Este projeto utiliza diversas práticas comuns em aplicações Spring Boot.
 * DTOs
 * Entidades separadas da API
 
-## Infraestrutura
+### Infraestrutura
 
 * Docker
 * PostgreSQL
@@ -288,7 +290,7 @@ Este projeto utiliza diversas práticas comuns em aplicações Spring Boot.
 
 ---
 
-# Boas práticas
+## Boas práticas
 
 * separação de responsabilidades
 * encapsulamento do domínio
@@ -300,9 +302,9 @@ Este projeto utiliza diversas práticas comuns em aplicações Spring Boot.
 
 ---
 
-# Roadmap
+## Roadmap
 
-## Em desenvolvimento
+### Em desenvolvimento
 
 * CRUD completo
 * DTOs de request/response
@@ -312,7 +314,7 @@ Este projeto utiliza diversas práticas comuns em aplicações Spring Boot.
 * filtros
 * documentação OpenAPI
 
-## Futuras melhorias
+### Futuras melhorias
 
 * autenticação JWT
 * autorização por perfis
@@ -324,7 +326,7 @@ Este projeto utiliza diversas práticas comuns em aplicações Spring Boot.
 
 ---
 
-# Documentação da API
+## Documentação da API
 
 Planejada integração com **Swagger / OpenAPI**.
 
@@ -336,7 +338,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
-# Testes
+## Testes
 
 Estrutura planejada:
 
@@ -357,7 +359,7 @@ Ferramentas previstas:
 
 ---
 
-# Aprendizados
+## Aprendizados
 
 Durante o desenvolvimento deste projeto foram explorados temas como:
 
@@ -371,7 +373,7 @@ Durante o desenvolvimento deste projeto foram explorados temas como:
 
 ---
 
-# Autor
+## Autor
 
 **Rodrigo Sabino**
 
@@ -381,7 +383,7 @@ Contribuições, sugestões e feedbacks são sempre bem-vindos.
 
 ---
 
-# Licença
+## Licença
 
 Este projeto está licenciado sob a **MIT License**.
 
